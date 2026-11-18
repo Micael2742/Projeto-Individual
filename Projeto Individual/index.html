@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecossistema de Recife de Coral</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#topo" class="brand">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c0-4-3-4-3-8s3-4 3-8c0 4 3 4 3 8s-3 4-3 8Z"/><path d="M6 13c-1.5 1-2 3-1 5M18 13c1.5 1 2 3 1 5"/></svg>
+      </span>
+      <span class="brand-name">Recife de Coral</span>
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#estrutura">Estrutura</a>
+      <a href="#biodiversidade">Biodiversidade</a>
+      <a href="#ameacas">Ameacas</a>
+      <a href="#dados">Dados</a>
+      <a href="#conservacao">Conservacao</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="topo">
+
+  <section class="hero">
+    <div class="hero-orb hero-orb-a"></div>
+    <div class="hero-orb hero-orb-b"></div>
+    <div class="hero-inner">
+      <div class="badge-icon badge-lg">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21c0-4-3-4-3-8s3-4 3-8c0 4 3 4 3 8s-3 4-3 8Z"/><path d="M6 13c-1.5 1-2 3-1 5M18 13c1.5 1 2 3 1 5"/></svg>
+      </div>
+      <p class="eyebrow eyebrow-light">Projeto Individual</p>
+      <h1>Ecossistema de<br>Recife de Coral</h1>
+      <p class="hero-lede">Estrutura, biodiversidade e conservacao de um dos ecossistemas mais produtivos do planeta.</p>
+      <div class="hero-actions">
+        <a href="#estrutura" class="btn btn-primary">Explorar o recife</a>
+        <a href="#dados" class="btn btn-ghost">Ver os dados</a>
+      </div>
+      <p class="hero-tag">Biologia&nbsp;&nbsp;//&nbsp;&nbsp;Ecologia Marinha</p>
+    </div>
+  </section>
+
+  <section class="content-section" id="oquee">
+    <p class="eyebrow" data-step="01">01</p>
+    <h2>O que e um recife de coral</h2>
+    <div class="two-col">
+      <div class="col-text">
+        <p>Um recife de coral e uma estrutura submarina formada ao longo de milhares de anos pelo acumulo de esqueletos calcarios secretados por polipos coloniais, pequenos animais invertebrados da classe Anthozoa.</p>
+        <p>Apesar de cobrirem menos de 1% do fundo oceanico, os recifes abrigam cerca de 25% de toda a vida marinha conhecida, funcionando como verdadeiras florestas tropicais do oceano.</p>
+      </div>
+      <div class="info-card">
+        <div class="badge-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c0-4-3-4-3-8s3-4 3-8c0 4 3 4 3 8s-3 4-3 8Z"/><path d="M6 13c-1.5 1-2 3-1 5M18 13c1.5 1 2 3 1 5"/></svg>
+        </div>
+        <p class="eyebrow">Polipo de coral</p>
+        <h3>A unidade viva do recife</h3>
+        <dl class="fact-list">
+          <div><dt>Tamanho</dt><dd>Poucos milimetros de diametro por polipo</dd></div>
+          <div><dt>Esqueleto</dt><dd>Carbonato de calcio (CaCO3) secretado pela base</dd></div>
+          <div><dt>Colonia</dt><dd>Milhares de polipos geneticamente identicos</dd></div>
+          <div><dt>Crescimento</dt><dd>0,5 a 2 cm por ano em corais duros</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section section-pale" id="condicoes">
+    <p class="eyebrow" data-step="02">02</p>
+    <h2>Onde os recifes se formam</h2>
+    <p class="section-lede">Corais construtores de recife precisam de agua rasa, quente, clara e com boa incidencia de luz solar, o que restringe sua ocorrencia a uma faixa especifica do planeta.</p>
+    <div class="card-row">
+      <div class="mini-card">
+        <div class="badge-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+        </div>
+        <h3>Luz solar</h3>
+        <p>Aguas rasas, ate cerca de 40 metros de profundidade</p>
+      </div>
+      <div class="mini-card">
+        <div class="badge-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v10a3 3 0 1 0 2 0V6"/></svg>
+        </div>
+        <h3>Temperatura</h3>
+        <p>Entre 23 e 29 graus Celsius em media anual</p>
+      </div>
+      <div class="mini-card">
+        <div class="badge-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9c1.5 1 2.5-1 4 0s2.5 1 4 0 2.5-1 4 0 2.5 1 4 0M3 15c1.5 1 2.5-1 4 0s2.5 1 4 0 2.5-1 4 0 2.5 1 4 0"/></svg>
+        </div>
+        <h3>Salinidade</h3>
+        <p>Agua salgada estavel, entre 32 e 42 partes por mil</p>
+      </div>
+    </div>
+    <p class="callout">Por isso, a grande maioria dos recifes de coral do mundo esta concentrada na faixa tropical entre os tropicos de Cancer e Capricornio, com destaque para o Triangulo de Coral no Sudeste Asiatico e a Grande Barreira de Corais na Australia.</p>
+  </section>
+
+  <section class="content-section" id="estrutura">
+    <p class="eyebrow" data-step="03">03</p>
+    <h2>Estrutura de um recife</h2>
+    <div class="two-col">
+      <ol class="step-list">
+        <li>
+          <span class="step-num">1</span>
+          <div><h3>Lagoa interna</h3><p>Agua calma e rasa entre o recife e a costa, com fundo arenoso e recifes de mancha isolados.</p></div>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <div><h3>Crista do recife</h3><p>Parte mais alta e exposta as ondas, onde os corais crescem mais robustos e compactos.</p></div>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <div><h3>Encosta frontal</h3><p>Talude que desce em direcao ao mar aberto, com maior diversidade de especies e corais ramificados.</p></div>
+        </li>
+        <li>
+          <span class="step-num">4</span>
+          <div><h3>Zona profunda</h3><p>Regiao de pouca luz onde predominam esponjas e corais adaptados a baixa luminosidade.</p></div>
+        </li>
+      </ol>
+      <div class="layer-panel">
+        <div class="layer-bar layer-1"><span>Lagoa interna</span></div>
+        <div class="layer-bar layer-2"><span>Crista do recife</span></div>
+        <div class="layer-bar layer-3"><span>Encosta frontal</span></div>
+        <div class="layer-bar layer-4"><span>Zona profunda</span></div>
+        <p class="panel-caption">Corte transversal simplificado</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section section-pale" id="biodiversidade">
+    <p class="eyebrow" data-step="04">04</p>
+    <h2>Produtores do recife</h2>
+    <p class="section-lede">A base de toda a cadeia alimentar do recife depende de organismos fotossintetizantes, que convertem luz solar em energia quimica.</p>
+    <div class="card-row">
+      <div class="mini-card mini-card-tall">
+        <div class="badge-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20c8 0 14-6 14-16-10 0-16 6-16 14 0 1 1 2 2 2Z"/></svg>
+        </div>
+        <h3>Zooxantelas</h3>
+        <p>Algas microscopicas que vivem dentro do tecido dos corais em uma relacao de simbiose, fornecendo ate 90% da energia do hospedeiro.</p>
+      </div>
+      <div class="mini-card mini-card-tall">
+        <div class="badge-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9c1.5 1 2.5-1 4 0s2.5 1 4 0 2.5-1 4 0 2.5 1 4 0M3 15c1.5 1 2.5-1 4 0s2.5 1 4 0 2.5-1 4 0 2.5 1 4 0"/></svg>
+        </div>
+        <h3>Algas calcarias</h3>
+        <p>Cimentam fragmentos de coral e areia, ajudando a construir e estabilizar a estrutura fisica do recife.</p>
+      </div>
+      <div class="mini-card mini-card-tall">
+        <div class="badge-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+        </div>
+        <h3>Fitoplancton</h3>
+        <p>Microorganismos que flutuam na coluna de agua e sustentam grande parte da rede alimentar planctonica.</p>
+      </div>
+    </div>
+    <div class="gbif-panel" data-gbif data-taxon-key="714">
+      <div class="section-heading-row">
+        <div>
+          <p class="eyebrow">Dados de biodiversidade</p>
+          <h3>Observacoes reais de corais</h3>
+        </div>
+        <button class="btn btn-ghost" data-gbif-reload type="button">Atualizar registros</button>
+      </div>
+      <p class="section-lede">Registros de ocorrencia de corais construtores de recifes publicados no GBIF. Os locais apresentados sao os informados pelos observadores.</p>
+      <p class="gbif-status" data-gbif-status role="status" aria-live="polite">Carregando registros do GBIF...</p>
+      <div class="card-row gbif-results" data-gbif-results></div>
+      <p class="source-note">Fonte: <a href="https://www.gbif.org/" target="_blank" rel="noopener noreferrer">GBIF — Global Biodiversity Information Facility</a>. A disponibilidade e a precisao dos dados dependem dos registros publicados.</p>
+    </div>
+  </section>
+
+  <section class="content-section" id="consumidores">
+    <p class="eyebrow" data-step="05">05</p>
+    <h2>Consumidores e fauna associada</h2>
+    <div class="two-col">
+      <div class="icon-rows">
+        <div class="icon-row">
+          <div class="badge-icon badge-md">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12c3-4 8-6 13-4 2 1 4 2 5 4-1 2-3 3-5 4-5 2-10 0-13-4Z"/><circle cx="16" cy="12" r="0.6" fill="currentColor"/></svg>
+          </div>
+          <div><h3>Peixes recifais</h3><p>Milhares de especies, de peixes-palhaco a garoupas, ocupam nichos especificos entre as formacoes coralineas.</p></div>
+        </div>
+        <div class="icon-row">
+          <div class="badge-icon badge-md">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c4 0 6 3 6 6-2 0-3 1-3 2 2 1 3 3 3 5-3 1-6-1-6-4-2 1-4 1-6 0 0 3-3 5-6 4 0-2 1-4 3-5 0-1-1-2-3-2 0-3 2-6 6-6 2 0 3 1 6 0Z"/></svg>
+          </div>
+          <div><h3>Tartarugas marinhas</h3><p>Utilizam o recife como area de alimentacao, sobretudo de esponjas e algas, e como abrigo contra predadores.</p></div>
+        </div>
+        <div class="icon-row">
+          <div class="badge-icon badge-md">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 15c5 2 15 2 20 0-4 5-16 5-20 0ZM12 15V4"/></svg>
+          </div>
+          <div><h3>Tubaroes de recife</h3><p>Predadores de topo que regulam as populacoes de peixes menores e mantem o equilibrio do ecossistema.</p></div>
+        </div>
+      </div>
+      <div class="trophic-panel">
+        <p class="eyebrow">Niveis troficos</p>
+        <div class="trophic-bar tb-1"><span>Produtores primarios</span></div>
+        <div class="trophic-bar tb-2"><span>Herbivoros</span></div>
+        <div class="trophic-bar tb-3"><span>Invertebrados e onivoros</span></div>
+        <div class="trophic-bar tb-4 tb-accent"><span>Predadores de topo</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section section-dark" id="simbiose">
+    <p class="eyebrow eyebrow-light" data-step="06">06</p>
+    <h2 class="text-light">Simbiose coral-alga</h2>
+    <p class="section-lede text-pale">A relacao entre o polipo de coral e as zooxantelas e o pilar ecologico que sustenta todo o recife.</p>
+    <div class="card-row">
+      <div class="dark-card">
+        <p class="step-index">01</p>
+        <h3>O coral oferece</h3>
+        <p>Abrigo protegido e compostos ricos em nitrogenio e fosforo, resultantes de seu proprio metabolismo.</p>
+      </div>
+      <div class="dark-card">
+        <p class="step-index">02</p>
+        <h3>A alga retribui</h3>
+        <p>Ate 90% da energia produzida por fotossintese, na forma de acucares e aminoacidos.</p>
+      </div>
+      <div class="dark-card">
+        <p class="step-index">03</p>
+        <h3>O resultado</h3>
+        <p>Crescimento acelerado do esqueleto calcario e a coloracao viva caracteristica dos corais saudaveis.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section" id="importancia">
+    <p class="eyebrow" data-step="07">07</p>
+    <h2>Por que os recifes importam</h2>
+    <div class="stat-row">
+      <div class="stat-card">
+        <p class="stat-number">25%</p>
+        <p>da vida marinha depende dos recifes em algum estagio de vida</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-number">500M</p>
+        <p>de pessoas dependem dos recifes para alimento e renda</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-number">US$ 9,9 tri</p>
+        <p>em valor estimado de servicos ecossistemicos por ano</p>
+      </div>
+    </div>
+    <div class="two-col two-col-reverse">
+      <div class="benefit-list">
+        <div class="icon-row">
+          <div class="badge-icon badge-coral">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6Z"/></svg>
+          </div>
+          <div><h3>Protecao costeira</h3><p>Reduzem em ate 97% a energia das ondas, protegendo litorais da erosao.</p></div>
+        </div>
+        <div class="icon-row">
+          <div class="badge-icon badge-coral">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h11l-3-3M20 17H9l3 3M4 12h16"/></svg>
+          </div>
+          <div><h3>Ciclagem de nutrientes</h3><p>Reciclam materia organica de forma extremamente eficiente em aguas pobres em nutrientes.</p></div>
+        </div>
+      </div>
+      <div class="quote-card">
+        <p>Um recife saudavel funciona como infraestrutura natural: alimenta, protege e sustenta economias costeiras inteiras.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section section-pale" id="ameacas">
+    <p class="eyebrow eyebrow-coral" data-step="08">08</p>
+    <h2>Ameacas ao ecossistema</h2>
+    <div class="threat-grid">
+      <div class="threat-card">
+        <div class="badge-icon badge-coral">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v10a3 3 0 1 0 2 0V6"/></svg>
+        </div>
+        <div><h3>Branqueamento</h3><p>O aumento da temperatura da agua rompe a simbiose entre coral e zooxantelas, deixando o coral esbranquicado e vulneravel.</p></div>
+      </div>
+      <div class="threat-card">
+        <div class="badge-icon badge-coral">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9c1.5 1 2.5-1 4 0s2.5 1 4 0 2.5-1 4 0 2.5 1 4 0M3 15c1.5 1 2.5-1 4 0s2.5 1 4 0 2.5-1 4 0 2.5 1 4 0"/></svg>
+        </div>
+        <div><h3>Acidificacao</h3><p>O excesso de CO2 absorvido pelo oceano reduz o pH da agua, dificultando a formacao do esqueleto calcario.</p></div>
+      </div>
+      <div class="threat-card">
+        <div class="badge-icon badge-coral">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2.5 2.5 13.5 0 16M12 4c-2.5 2.5-2.5 13.5 0 16"/></svg>
+        </div>
+        <div><h3>Poluicao costeira</h3><p>Esgoto, agrotoxicos e sedimentos em excesso reduzem a luz disponivel e favorecem algas oportunistas.</p></div>
+      </div>
+      <div class="threat-card">
+        <div class="badge-icon badge-coral">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12c3-4 8-6 13-4 2 1 4 2 5 4-1 2-3 3-5 4-5 2-10 0-13-4Z"/><circle cx="16" cy="12" r="0.6" fill="currentColor"/></svg>
+        </div>
+        <div><h3>Pesca predatoria</h3><p>Metodos destrutivos, como o uso de explosivos e cianeto, danificam fisicamente a estrutura do recife.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section" id="dados">
+    <p class="eyebrow" data-step="09">09</p>
+    <h2>Perda de cobertura coralinea</h2>
+    <p class="section-lede">Estimativa de cobertura viva de coral remanescente por decada, em porcentagem media global</p>
+    <div class="two-col">
+      <div class="chart-panel" id="chartPanel">
+        <div class="chart-bar" data-value="42" style="--val:42"><span class="chart-value">42</span><span class="chart-label">1980</span></div>
+        <div class="chart-bar" data-value="36" style="--val:36"><span class="chart-value">36</span><span class="chart-label">1990</span></div>
+        <div class="chart-bar" data-value="30" style="--val:30"><span class="chart-value">30</span><span class="chart-label">2000</span></div>
+        <div class="chart-bar" data-value="25" style="--val:25"><span class="chart-value">25</span><span class="chart-label">2010</span></div>
+        <div class="chart-bar" data-value="18" style="--val:18"><span class="chart-value">18</span><span class="chart-label">2020</span></div>
+        <div class="chart-bar" data-value="14" style="--val:14"><span class="chart-value">14</span><span class="chart-label">2024</span></div>
+      </div>
+      <div class="dark-panel">
+        <p class="eyebrow eyebrow-coral">Leitura do grafico</p>
+        <p class="text-pale">Em quatro decadas, a cobertura media de corais vivos caiu de mais de 40% para menos de 15% em muitas regioes monitoradas, um reflexo direto do aquecimento oceanico e da pressao humana sobre a costa.</p>
+        <p class="source-note">Fonte: adaptado de series historicas de monitoramento de recifes</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section section-pale" id="conservacao">
+    <p class="eyebrow" data-step="10">10</p>
+    <h2>O que pode ser feito</h2>
+    <div class="card-row card-row-4">
+      <div class="mini-card mini-card-tall">
+        <div class="badge-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6Z"/></svg>
+        </div>
+        <h3>Areas marinhas protegidas</h3>
+        <p>Zonas com pesca e turismo regulados, que dao tempo para o recife se recuperar.</p>
+      </div>
+      <div class="mini-card mini-card-tall">
+        <div class="badge-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h11l-3-3M20 17H9l3 3M4 12h16"/></svg>
+        </div>
+        <h3>Reducao de poluentes</h3>
+        <p>Tratamento de esgoto e controle de agrotoxicos que chegam ate a costa.</p>
+      </div>
+      <div class="mini-card mini-card-tall">
+        <div class="badge-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20c8 0 14-6 14-16-10 0-16 6-16 14 0 1 1 2 2 2Z"/></svg>
+        </div>
+        <h3>Restauracao coralinea</h3>
+        <p>Viveiros de coral e transplante de fragmentos para areas degradadas.</p>
+      </div>
+      <div class="mini-card mini-card-tall">
+        <div class="badge-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2.5 2.5 13.5 0 16M12 4c-2.5 2.5-2.5 13.5 0 16"/></svg>
+        </div>
+        <h3>Reducao de emissoes</h3>
+        <p>Mitigacao do aquecimento global, principal causa do branqueamento em massa.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section section-dark section-conclusion" id="conclusao">
+    <div class="hero-orb hero-orb-a"></div>
+    <div class="badge-icon badge-coral badge-lg">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5c4-2 8-2 8 0v14c0-2-4-2-8 0V5ZM20 5c-4-2-8-2-8 0v14c0-2 4-2 8 0V5Z"/></svg>
+    </div>
+    <h2 class="text-light">Conclusao</h2>
+    <p class="conclusion-text">Os recifes de coral sao um dos ecossistemas mais ricos e, ao mesmo tempo, mais ameacados do planeta. Sua preservacao depende diretamente da reducao das pressoes humanas sobre o oceano e o clima.</p>
+    <div class="divider-line"></div>
+    <p class="eyebrow eyebrow-coral">Referencias</p>
+    <p class="text-pale references-text">NOAA Coral Reef Watch&nbsp;&nbsp;//&nbsp;&nbsp;Reefs at Risk Revisited, World Resources Institute&nbsp;&nbsp;//&nbsp;&nbsp;Status of Coral Reefs of the World, GCRMN</p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <nav class="page-navigation" aria-label="Navegação entre conteúdos">
+    <a href="index.html" class="btn btn-primary">Recife de Coral</a>
+    <a href="atomos.html" class="btn btn-ghost">Modelos Atômicos</a>
+    <a href="celulas.html" class="btn btn-ghost">Biologia Celular</a>
+    <a href="darwin.html" class="btn btn-ghost">Charles Darwin</a>
+    <a href="selecao-natural.html" class="btn btn-ghost">Seleção Natural</a>
+  </nav>
+  <p>Biologia // Ecologia Marinha</p>
+  <p>Projeto Individual / Biologia — Ecossistema de Recife de Coral</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="script.js"></script>
+<script src="gbif.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

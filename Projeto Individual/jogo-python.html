@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bio Dash — Portal Científico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+  <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand"><span class="brand-mark">PS</span><span class="brand-name">Portal Científico</span></a>
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html">Conteúdos</a>
+        <a href="jogos.html" aria-current="page">Mini games</a>
+        <a href="conta.html">Minha conta</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main class="study-page">
+    <section class="study-hero">
+      <div>
+        <p class="eyebrow eyebrow-light">Jogo de plataforma em Python</p>
+        <h1>Bio Dash</h1>
+        <p class="hero-lede">Pule os obstáculos, sobreviva o máximo possível e tente bater seu recorde!</p>
+      </div>
+      <div class="hero-score"><span>∞</span><small>desafios pela frente</small></div>
+    </section>
+
+    <section class="study-section runner-section">
+      <div class="runner-hud" aria-label="Pontuação">
+        <div><span class="runner-hud-label">Pontos</span><strong id="runner-score">0</strong></div>
+        <div><span class="runner-hud-label">Recorde</span><strong id="runner-best">0</strong></div>
+      </div>
+      <div class="runner-game">
+        <canvas id="game-canvas" width="960" height="380" aria-label="Jogo Bio Dash: pule para desviar dos obstáculos" tabindex="0">
+          Seu navegador não oferece suporte ao canvas. Use o botão Pular abaixo para controlar o jogo.
+        </canvas>
+      </div>
+      <div class="runner-message" id="game-message" role="status" aria-live="polite">
+        Carregando o jogo em Python...
+      </div>
+      <div class="runner-controls">
+        <button class="btn btn-primary" id="jump-button" type="button">Pular</button>
+        <button class="btn btn-ghost" id="restart-game" type="button" hidden style="display: none;">Jogar de novo</button>
+      </div>
+      <div class="runner-help">
+        <p><strong>Computador:</strong> Espaço, ↑ ou W para pular.</p>
+        <p><strong>Celular:</strong> toque em Pular ou na área do jogo.</p>
+      </div>
+      <div class="how-to-play runner-instructions">
+        <p class="eyebrow">Como jogar</p>
+        <p>Pule antes que o personagem alcance um obstáculo. Quanto mais tempo sobreviver, maior será a pontuação. Ao colidir, use <b>Jogar de novo</b> ou pressione Enter para reiniciar.</p>
+      </div>
+      <p class="source-note">O jogo usa Python executado no navegador pelo PyScript. É necessária uma conexão com a internet para carregar o ambiente Python.</p>
+      <a class="btn btn-ghost" href="jogos.html">Voltar aos mini games</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <nav class="page-navigation" aria-label="Navegação principal">
+      <a href="index.html" class="btn btn-ghost">Conteúdos</a>
+      <a href="jogos.html" class="btn btn-primary">Mini games</a>
+      <a href="conta.html" class="btn btn-ghost">Minha conta</a>
+    </nav>
+    <p>Portal Científico // Biologia</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('keydown', (event) => {
+      if (['Space', 'ArrowUp', 'KeyW'].includes(event.code) && !event.repeat) {
+        event.preventDefault();
+        document.querySelector('#jump-button').click();
+      } else if (event.code === 'Enter' && !document.querySelector('#restart-game').hidden) {
+        document.querySelector('#restart-game').click();
+      }
+    });
+  </script>
+  <script type="py" src="jogo_python.py"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — Biologia & Modelos Atômicos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="split-screen">
+    
+    <div class="login-pane">
+      <div class="login-wrapper">
+        <div class="login-header">
+          <a href="index.html" class="brand">
+            <span class="brand-mark">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8" stroke-dasharray="4 2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+            </span>
+            <span class="brand-name">Portal Científico</span>
+          </a>
+          <h2>Bem-vindo de volta</h2>
+          <p class="login-subtitle">Acesse sua conta para continuar estudando</p>
+        </div>
+
+        <form class="login-form" action="#" method="POST" novalidate>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <div class="input-wrapper">
+              <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com" required>
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="label-row">
+              <label for="password">Senha</label>
+              <a href="#" class="forgot-link">Esqueceu a senha?</a>
+            </div>
+            <div class="input-wrapper">
+              <input type="password" id="password" name="password" placeholder="••••••••" required>
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-options">
+            <label class="remember-me">
+              <input type="checkbox" name="remember">
+              <span>Lembrar de mim</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full">Entrar na plataforma</button>
+        </form>
+
+        <div class="login-divider" aria-hidden="true"><span>ou</span></div>
+        <button type="button" class="btn btn-google btn-full" id="google-login">
+          <svg viewBox="0 0 48 48" width="18" height="18" aria-hidden="true">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.73 7.18l7.66 5.94c4.47-4.13 7.11-10.22 7.11-17.59z"/>
+            <path fill="#FBBC05" d="M10.53 28.59A14.4 14.4 0 0 1 9.75 24c0-1.59.27-3.13.76-4.59l-7.98-6.19A23.9 23.9 0 0 0 0 24c0 3.87.93 7.53 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.9-5.86l-7.66-5.94c-2.13 1.43-4.86 2.28-8.24 2.28-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+          Entrar com Google
+        </button>
+        <p class="google-login-status" id="google-login-status" role="status" aria-live="polite"></p>
+
+        <div class="login-footer">
+          <p>Ainda não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+          <a href="index.html" class="btn btn-ghost auth-navigation">Explorar conteúdos</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="biology-pane">
+      <div class="hero-orb hero-orb-a"></div>
+      <div class="hero-orb hero-orb-b"></div>
+
+      <div class="bio-content">
+        <p class="eyebrow eyebrow-coral">Curiosidades Biológicas</p>
+        <h2>A complexidade da vida em escala</h2>
+
+        <div class="bio-cards-grid">
+          <div class="bio-card">
+            <div class="bio-card-icon">🧬</div>
+            <div>
+              <h3>Código Genético Extenso</h3>
+              <p>Se o DNA de todas as células do corpo humano fosse esticado, cobriria a distância da Terra ao Sol cerca de 60 vezes.</p>
+            </div>
+          </div>
+
+          <div class="bio-card">
+            <div class="bio-card-icon">🦠</div>
+            <div>
+              <h3>O Microbioma</h3>
+              <p>Existem mais bactérias vivendo no seu corpo do que células humanas. Você é 50% humano e 50% micróbio em contagem celular.</p>
+            </div>
+          </div>
+
+          <div class="bio-card">
+            <div class="bio-card-icon">🌳</div>
+            <div>
+              <h3>Conexão Fúngica</h3>
+              <p>As florestas se comunicam por meio de redes subterrâneas de fungos chamadas micorrizas, apelidadas de "Wood Wide Web".</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bio-quote">
+          <p>"A biologia é o estudo das coisas complicadas que têm a aparência de terem sido projetadas com um propósito."</p>
+          <span>— Richard Dawkins</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="database.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

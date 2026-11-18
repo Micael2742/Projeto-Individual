@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Games — Portal Científico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand"><span class="brand-mark">PS</span><span class="brand-name">Portal Científico</span></a>
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html">Conteúdos</a>
+        <a href="jogos.html" aria-current="page">Mini games</a>
+        <a href="conta.html">Minha conta</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main class="study-page games-page">
+    <section class="study-hero games-hero">
+      <div>
+        <p class="eyebrow eyebrow-light">Laboratório de desafios</p>
+        <h1>Aprenda jogando.</h1>
+        <p class="hero-lede">Puzzles curtos para revisar conceitos, testar hipóteses e descobrir onde seu conhecimento está mais forte.</p>
+      </div>
+      <div class="hero-score"><span id="heroGamesPlayed">0</span><small>desafios concluídos</small></div>
+    </section>
+
+    <section class="study-section" id="subjects">
+      <div class="section-heading-row">
+        <div><p class="eyebrow">Escolha uma matéria</p><h2>Desafios por assunto</h2></div>
+        <span class="question-counter" id="questionCounter">Escolha um tema</span>
+      </div>
+      <div class="how-to-play">
+        <p class="eyebrow">Como jogar</p>
+        <p><strong>1.</strong> Escolha uma matéria nas quatro abas.</p>
+        <p><strong>2.</strong> Leia a pergunta e clique em uma resposta.</p>
+        <p><strong>3.</strong> Confira a correção e use <b>Próxima pergunta</b>. Ao finalizar, o resultado é salvo na sua conta.</p>
+      </div>
+      <div class="subject-tabs" role="tablist" aria-label="Matérias">
+        <button class="subject-tab active" data-subject="citologia" role="tab">Citologia<span>células e organelas</span></button>
+        <button class="subject-tab" data-subject="genetica" role="tab">Genética<span>DNA e herança</span></button>
+        <button class="subject-tab" data-subject="ecologia" role="tab">Ecologia<span>relações e ambiente</span></button>
+        <button class="subject-tab" data-subject="evolucao" role="tab">Evolução<span>adaptação e seleção</span></button>
+      </div>
+
+      <div class="quiz-shell">
+        <div class="quiz-meta"><span id="subjectLabel">Citologia</span><span id="quizScore">0 acertos</span></div>
+        <div class="quiz-question"><p class="eyebrow" id="questionNumber">Pergunta 01</p><h3 id="questionText">Carregando desafio...</h3></div>
+        <div class="answer-grid" id="answerGrid"></div>
+        <div class="quiz-feedback" id="quizFeedback" aria-live="polite"></div>
+        <button class="btn btn-primary next-question" id="nextQuestion" type="button" disabled>Próxima pergunta</button>
+      </div>
+    </section>
+
+    <section class="study-section section-pale memory-section">
+      <div class="section-heading-row"><div><p class="eyebrow">Puzzle visual</p><h2>Memória celular</h2></div><span class="memory-moves" id="memoryMoves">0 movimentos</span></div>
+      <p class="section-lede">Encontre os pares de estruturas celulares. Cada combinação revela uma função importante.</p>
+      <div class="how-to-play">
+        <p class="eyebrow">Como jogar</p>
+        <p>Clique em duas cartas por vez. Se forem iguais, elas ficam abertas; caso contrário, viram novamente. Encontre todos os pares com a menor quantidade possível de movimentos.</p>
+      </div>
+      <div class="memory-board" id="memoryBoard"></div>
+      <button class="btn btn-ghost" id="resetMemory" type="button">Recomeçar memória</button>
+    </section>
+
+    <section class="study-section">
+      <div class="section-heading-row">
+        <div><p class="eyebrow">Explore e pratique</p><h2>Mais jogos</h2></div>
+      </div>
+      <div class="python-game-list">
+        <div class="quiz-shell">
+          <p class="eyebrow">Química molecular</p>
+          <h3>A Alquimia da Vida</h3>
+          <p class="section-lede">Memorize fórmulas e monte moléculas com os 118 elementos da tabela periódica.</p>
+          <a class="btn btn-primary" href="bioquantica.html">Abrir laboratório molecular</a>
+        </div>
+        <div class="quiz-shell">
+          <p class="eyebrow">Biologia e evolução</p>
+          <h3>Quiz por assunto</h3>
+          <p class="section-lede">Prefere responder perguntas? Escolha citologia, genética, ecologia ou evolução no quiz da página.</p>
+          <a class="btn btn-ghost" href="#subjects">Ir para os quizzes</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="study-section">
+      <div class="gbif-panel" data-gbif data-taxon-key="5231020" data-country="EC">
+        <div class="section-heading-row">
+          <div>
+            <p class="eyebrow">Ecologia e evolução</p>
+            <h3>Espécies observadas em Galápagos</h3>
+          </div>
+          <button class="btn btn-ghost" data-gbif-reload type="button">Atualizar registros</button>
+        </div>
+        <p class="section-lede">Use os registros de tentilhões do gênero Geospiza como ponto de partida para pensar em biodiversidade. Ocorrências não são, por si só, evidência de seleção natural.</p>
+        <p class="gbif-status" data-gbif-status role="status" aria-live="polite">Carregando registros do GBIF...</p>
+        <div class="card-row gbif-results" data-gbif-results></div>
+        <p class="source-note">Fonte: <a href="https://www.gbif.org/" target="_blank" rel="noopener noreferrer">GBIF — Global Biodiversity Information Facility</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <nav class="page-navigation" aria-label="Navegação principal">
+      <a href="index.html" class="btn btn-ghost">Conteúdos</a>
+      <a href="jogos.html" class="btn btn-primary">Mini games</a>
+      <a href="conta.html" class="btn btn-ghost">Minha conta</a>
+    </nav>
+    <p>Portal Científico // Biologia</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="script.js"></script>
+  <script src="gbif.js"></script>
+  <script src="jogos.js"></script>
+</body>
+</html>

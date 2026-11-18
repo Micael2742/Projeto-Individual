@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minha Conta — Portal Científico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">PS</span>
+        <span class="brand-name">Portal Científico</span>
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html">Conteúdos</a>
+        <a href="jogos.html">Mini games</a>
+        <a href="conta.html" aria-current="page">Minha conta</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main class="study-page account-page">
+    <section class="study-hero">
+      <p class="eyebrow eyebrow-light">Área do estudante</p>
+      <h1>Minha conta</h1>
+      <p class="hero-lede">Acompanhe seu percurso pelos conteúdos e desafios de biologia.</p>
+    </section>
+
+    <section class="study-section account-grid">
+      <div class="profile-panel" id="profilePanel">
+        <span class="profile-avatar" id="profileAvatar">?</span>
+        <div>
+          <p class="eyebrow">Perfil</p>
+          <h2 id="profileName">Visitante</h2>
+          <p id="profileEmail">Você ainda não está conectado.</p>
+        </div>
+        <a href="login.html" class="btn btn-primary" id="accountAction">Entrar na conta</a>
+      </div>
+
+      <div class="study-stats">
+        <article class="study-stat">
+          <span class="stat-number" id="gamesPlayed">0</span>
+          <p>desafios iniciados</p>
+        </article>
+        <article class="study-stat">
+          <span class="stat-number" id="questionsCorrect">0</span>
+          <p>respostas corretas</p>
+        </article>
+        <article class="study-stat">
+          <span class="stat-number" id="accuracyRate">0%</span>
+          <p>taxa geral de acertos</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="study-section">
+      <div class="section-heading-row">
+        <div>
+          <p class="eyebrow">Seu percurso</p>
+          <h2>Continue estudando</h2>
+        </div>
+        <a href="jogos.html" class="btn btn-ghost">Abrir desafios</a>
+      </div>
+      <div class="subject-progress-grid">
+        <article class="subject-progress"><span>Citologia</span><strong data-progress-subject="citologia">0%</strong><div class="progress-track"><i data-progress-bar="citologia"></i></div></article>
+        <article class="subject-progress"><span>Genética</span><strong data-progress-subject="genetica">0%</strong><div class="progress-track"><i data-progress-bar="genetica"></i></div></article>
+        <article class="subject-progress"><span>Ecologia</span><strong data-progress-subject="ecologia">0%</strong><div class="progress-track"><i data-progress-bar="ecologia"></i></div></article>
+        <article class="subject-progress"><span>Evolução</span><strong data-progress-subject="evolucao">0%</strong><div class="progress-track"><i data-progress-bar="evolucao"></i></div></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <nav class="page-navigation" aria-label="Navegação principal">
+      <a href="index.html" class="btn btn-ghost">Conteúdos</a>
+      <a href="jogos.html" class="btn btn-ghost">Mini games</a>
+      <a href="conta.html" class="btn btn-primary">Minha conta</a>
+    </nav>
+    <p>Portal Científico // Biologia</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="script.js"></script>
+  <script src="conta.js"></script>
+</body>
+</html>

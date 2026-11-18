@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Explore átomos e moléculas em BioQuântica: Do Átomo à Vida.">
+  <title>BioQuântica: Do Átomo à Vida</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #000000;
+      --panel: #171717;
+      --panel-2: #121212;
+      --line: rgba(255, 255, 255, .12);
+      --text: #f5f5f5;
+      --muted: #c9c9c9;
+      --green: #ffffff;
+      --cyan: #c9c9c9;
+      --yellow: #f5f5f5;
+      --red: #c9c9c9;
+      --shadow: 0 18px 54px rgba(0, 0, 0, .28);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 12% 0%, rgba(255, 255, 255, .055), transparent 34rem),
+        radial-gradient(ellipse at 100% 12%, rgba(255, 255, 255, .035), transparent 30rem),
+        var(--bg);
+    }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    [hidden] { display: none !important; }
+    button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 3px;
+    }
+    .shell { width: min(1240px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 21px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-mark {
+      width: 38px; height: 38px; display: grid; place-items: center;
+      border: 1px solid rgba(255, 255, 255, .35); border-radius: 12px;
+      color: var(--text); background: rgba(255, 255, 255, .06);
+      box-shadow: 0 0 24px rgba(255, 255, 255, .06);
+      font-size: 20px;
+    }
+    .brand-name { font-size: 14px; font-weight: 800; letter-spacing: .12em; }
+    .brand-sub { margin-top: 3px; color: var(--muted); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; }
+    .top-actions { display: flex; align-items: center; gap: 10px; }
+    .status { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--text); box-shadow: 0 0 12px rgba(255,255,255,.55); }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 42px; padding: 0 15px; border: 1px solid var(--line); border-radius: 10px;
+      background: rgba(255,255,255,.025); color: var(--text); cursor: pointer;
+      transition: border-color .2s, background .2s, transform .2s, opacity .2s;
+    }
+    .button:hover:not(:disabled) { transform: translateY(-1px); border-color: rgba(255,255,255,.55); background: rgba(255,255,255,.08); }
+    .button:disabled { opacity: .42; cursor: not-allowed; }
+    .button.primary { border-color: #ffffff; background: #ffffff; color: #000000; font-weight: 800; }
+    .button.primary:hover:not(:disabled) { background: transparent; color: #ffffff; }
+    .button.danger { color: #f5f5f5; border-color: rgba(255,255,255,.28); }
+    .button.small { min-height: 34px; padding: 0 11px; font-size: 12px; }
+    main { padding: 36px 0 60px; }
+    .eyebrow { color: var(--green); font-size: 11px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 780px; margin: 14px 0 15px; font-size: clamp(36px, 6vw, 66px); line-height: .99; letter-spacing: -.055em; }
+    h1 span { color: var(--green); }
+    .lede { max-width: 650px; color: var(--muted); font-size: 16px; line-height: 1.7; }
+    .hero {
+      position: relative; overflow: hidden; display: grid; grid-template-columns: 1.4fr .6fr;
+      gap: 28px; align-items: center; padding: clamp(26px, 5vw, 56px);
+      border: 1px solid var(--line); border-radius: 24px;
+      background: linear-gradient(120deg, #161616, #050505);
+      box-shadow: var(--shadow);
+    }
+    .hero::after {
+      content: ""; position: absolute; width: 360px; height: 360px; right: 3%; top: -30%;
+      border: 1px solid rgba(255,255,255,.12); border-radius: 50%;
+      box-shadow: 0 0 0 34px rgba(255,255,255,.025), 0 0 0 75px rgba(255,255,255,.018);
+      pointer-events: none;
+    }
+    .hero-copy, .hero-art { position: relative; z-index: 1; }
+    .hero-art { display: grid; place-items: center; min-height: 210px; }
+    .atom-art { position: relative; width: 190px; height: 190px; }
+    .orbit { position: absolute; inset: 20px 0; border: 1px solid rgba(98,221,242,.42); border-radius: 50%; transform: rotate(38deg); }
+    .orbit.two { transform: rotate(-38deg); border-color: rgba(112,244,180,.45); }
+    .nucleus { position: absolute; width: 48px; height: 48px; left: 71px; top: 71px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #b5ffe0, #3ed99d 56%, #087859); box-shadow: 0 0 34px rgba(112,244,180,.42); }
+    .electron { position: absolute; width: 10px; height: 10px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 15px var(--cyan); }
+    .electron.one { left: 28px; top: 63px; }
+    .electron.two { right: 28px; bottom: 59px; background: var(--green); box-shadow: 0 0 15px var(--green); }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin: 34px 0 16px; }
+    .section-heading h2 { margin: 0; font-size: 21px; letter-spacing: -.025em; }
+    .section-heading p { margin: 6px 0 0; color: var(--muted); font-size: 13px; }
+    .mode-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    .mode-card {
+      position: relative; display: flex; min-height: 232px; flex-direction: column; align-items: flex-start;
+      padding: 22px; border: 1px solid var(--line); border-radius: 18px;
+      background: linear-gradient(150deg, #171717, #0f0f0f);
+      text-align: left; cursor: pointer; transition: transform .2s, border-color .2s, background .2s;
+    }
+    .mode-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.45); background: #1a1a1a; }
+    .mode-number { color: var(--green); font-size: 11px; font-weight: 800; letter-spacing: .14em; }
+    .mode-icon { display: grid; place-items: center; width: 43px; height: 43px; margin: 17px 0 16px; border-radius: 13px; background: rgba(255,255,255,.07); font-size: 23px; }
+    .mode-card h3 { margin: 0 0 8px; font-size: 17px; }
+    .mode-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .mode-arrow { position: absolute; right: 21px; bottom: 20px; color: var(--green); font-size: 20px; }
+    .particle-panel {
+      display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center;
+      margin-top: 22px; padding: 18px 20px; border: 1px solid var(--line); border-radius: 16px;
+      background: rgba(18,18,18,.92);
+    }
+    .particle-panel h2 { margin: 0 0 5px; font-size: 14px; }
+    .particle-panel p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .particle-tabs { display: flex; flex-wrap: wrap; gap: 7px; }
+    .particle-tab { min-height: 34px; padding: 0 11px; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: var(--muted); cursor: pointer; font-size: 12px; }
+    .particle-tab[aria-pressed="true"] { border-color: rgba(255,255,255,.5); color: var(--text); background: rgba(255,255,255,.08); }
+    .mode-view { display: none; }
+    .mode-view.active { display: block; }
+    .mode-title { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin: 28px 0 18px; }
+    .mode-title h1 { margin: 9px 0 8px; font-size: clamp(30px, 4vw, 43px); }
+    .mode-title p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .workspace { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(270px, .65fr); gap: 16px; align-items: start; }
+    .panel { border: 1px solid var(--line); border-radius: 17px; background: rgba(23,23,23,.92); box-shadow: var(--shadow); }
+    .panel-pad { padding: 20px; }
+    .panel-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+    .panel-heading h2, .panel-heading h3 { margin: 0; font-size: 15px; }
+    .step-tag, .tag { padding: 6px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 10px; white-space: nowrap; }
+    .challenge-banner { padding: 15px; border: 1px solid rgba(255,255,255,.2); border-radius: 12px; background: rgba(255,255,255,.035); }
+    .challenge-banner .label { color: var(--green); font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    .challenge-banner h3 { margin: 7px 0 4px; font-size: 19px; }
+    .challenge-banner p { margin: 0; color: var(--muted); font-size: 12px; }
+    .atom-picker { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; margin: 15px 0; }
+    .atom-picker { grid-template-columns: repeat(8, 1fr); max-height: 390px; overflow-y: auto; padding-right: 4px; }
+    .difficulty-panel {
+    display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 12px;
+    margin: 14px 0; padding: 12px; border: 1px solid var(--line); border-radius: 12px;
+    background: rgba(255,255,255,.025);
+    }
+    .difficulty-panel > strong { font-size: 12px; }
+    .difficulty-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
+    .difficulty-button { min-height: 38px; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: var(--muted); cursor: pointer; font-size: 11px; }
+    .difficulty-button.active { border-color: rgba(255,255,255,.55); background: rgba(255,255,255,.1); color: var(--green); }
+    .formula-preview { min-height: 42px; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; }
+    .formula-preview button { flex: 0 0 auto; }
+    .atom-button {
+      position: relative; display: grid; justify-items: center; gap: 3px; min-height: 88px;
+      padding: 10px 6px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.025); cursor: pointer;
+    }
+    .atom-button:hover { border-color: rgba(255,255,255,.56); background: rgba(255,255,255,.06); }
+    .atom-symbol { font-size: 24px; font-weight: 800; color: var(--text); }
+    .atom-name { color: var(--muted); font-size: 10px; }
+    .atom-count { position: absolute; top: 5px; right: 7px; color: var(--green); font-size: 10px; }
+    .bench { min-height: 116px; padding: 14px; border: 1px dashed rgba(255,255,255,.24); border-radius: 12px; background: rgba(0,0,0,.4); }
+    .bench-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+    .bench-top strong { font-size: 12px; }
+    .bench-top span { color: var(--muted); font-size: 11px; }
+    .atom-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+    .atom-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 8px; border: 1px solid rgba(255,255,255,.2); border-radius: 8px; background: rgba(255,255,255,.05); color: var(--text); font-size: 12px; }
+    .atom-chip button { padding: 0; border: 0; background: none; color: var(--muted); cursor: pointer; }
+    .empty-note { color: #8f8f8f; font-size: 12px; }
+    .bench-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 13px; }
+    .result-box { display: none; margin-top: 14px; padding: 14px; border: 1px solid var(--line); border-radius: 11px; font-size: 13px; line-height: 1.55; }
+    .result-box.show { display: block; }
+    .result-box.success { border-color: rgba(255,255,255,.35); background: rgba(255,255,255,.07); }
+    .result-box.error { border-color: rgba(190,190,190,.35); background: rgba(190,190,190,.06); }
+    .result-box strong { display: block; margin-bottom: 4px; }
+    .fact-list { display: grid; gap: 9px; }
+    .fact-row { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 9px; border-bottom: 1px solid rgba(255,255,255,.09); font-size: 12px; }
+    .fact-row span { color: var(--muted); }
+    .fact-row strong { text-align: right; }
+    .muted-copy { color: var(--muted); font-size: 12px; line-height: 1.65; }
+    .molecule-progress { display: grid; gap: 9px; margin-top: 18px; }
+    .progress-item { display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: 11px; }
+    .progress-mark { display: grid; place-items: center; width: 19px; height: 19px; border: 1px solid var(--line); border-radius: 50%; font-size: 10px; }
+    .progress-item.done { color: var(--green); }
+    .progress-item.done .progress-mark { border-color: var(--green); background: rgba(255,255,255,.1); }
+    .hud { display: grid; grid-template-columns: repeat(4,1fr); gap: 9px; margin-bottom: 13px; }
+    .hud-card { padding: 11px 12px; border: 1px solid var(--line); border-radius: 11px; background: rgba(23,23,23,.82); }
+    .hud-label { color: var(--muted); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+    .hud-value { margin-top: 5px; font-size: 21px; font-weight: 800; }
+    .hud-value.green { color: var(--green); }
+    .hud-value.cyan { color: var(--cyan); }
+    .hud-value.red { color: var(--red); }
+    .game-canvas { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 13px; background: #080808; touch-action: manipulation; }
+    .complex-controls { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-top: 12px; }
+    .complex-button { min-height: 54px; flex-direction: column; gap: 2px; padding: 7px 4px; font-size: 11px; }
+    .complex-button strong { font-size: 14px; }
+    .complex-button.ready { border-color: var(--green); color: var(--green); box-shadow: 0 0 16px rgba(255,255,255,.13); }
+    .game-note { margin: 13px 0 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+    .health-track, .meter-track { height: 7px; overflow: hidden; margin-top: 8px; border-radius: 99px; background: rgba(255,255,255,.08); }
+    .health-fill, .meter-fill { width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--green), var(--cyan)); transition: width .25s; }
+    .health-fill { background: linear-gradient(90deg, var(--red), var(--yellow)); }
+    .dna-controls { display: grid; gap: 13px; margin: 14px 0; }
+    .control-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .control-row label { font-size: 12px; }
+    .segmented { display: flex; gap: 5px; padding: 4px; border: 1px solid var(--line); border-radius: 10px; background: rgba(0,0,0,.18); }
+    .segment { min-height: 32px; padding: 0 10px; border: 0; border-radius: 7px; background: transparent; color: var(--muted); cursor: pointer; font-size: 11px; }
+    .segment[aria-pressed="true"] { background: rgba(255,255,255,.12); color: var(--text); }
+    input[type="range"] { width: min(220px, 55%); accent-color: var(--green); }
+    .range-value { min-width: 38px; color: var(--green); text-align: right; font-size: 12px; }
+    .creature-wrap { display: grid; place-items: center; min-height: 180px; margin: 10px 0 13px; border: 1px solid var(--line); border-radius: 13px; background: radial-gradient(ellipse, rgba(255,255,255,.08), rgba(0,0,0,.18) 68%); }
+    .creature { width: 106px; height: 120px; color: #d0d0d0; filter: drop-shadow(0 0 17px currentColor); transition: width .35s, height .35s, color .35s, filter .35s; }
+    .creature-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; }
+    .creature-stat { padding: 9px 7px; border: 1px solid var(--line); border-radius: 9px; text-align: center; }
+    .creature-stat span { display: block; color: var(--muted); font-size: 9px; text-transform: uppercase; }
+    .creature-stat strong { display: block; margin-top: 4px; font-size: 12px; }
+    .journal { display: grid; gap: 8px; max-height: 260px; overflow: auto; padding-right: 3px; }
+    .journal-entry { padding: 10px 11px; border-left: 2px solid var(--cyan); border-radius: 0 8px 8px 0; background: rgba(255,255,255,.045); }
+    .journal-entry time { display: block; margin-bottom: 4px; color: var(--text); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+    .journal-entry p { margin: 0; color: #c9c9c9; font-size: 11px; line-height: 1.5; }
+    .disclaimer { margin: 20px 0 0; padding: 12px 14px; border: 1px solid rgba(255,255,255,.15); border-radius: 10px; color: #c9c9c9; background: rgba(255,255,255,.035); font-size: 11px; line-height: 1.6; }
+    footer { padding: 18px 0 28px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; text-align: center; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-art { position: absolute; right: 4%; top: 12px; opacity: .38; transform: scale(.8); }
+      .mode-grid { grid-template-columns: 1fr; }
+      .mode-card { min-height: 190px; }
+      .workspace { grid-template-columns: 1fr; }
+      .particle-panel { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      .shell { width: min(100% - 24px, 1240px); }
+      .topbar { padding: 15px 0; }
+      .brand-name { font-size: 11px; }
+      .status { display: none; }
+      main { padding-top: 22px; }
+      .hero { padding: 26px 21px; }
+      .hero-art { right: -24px; top: 55px; transform: scale(.63); opacity: .22; }
+      h1 { font-size: clamp(35px, 12vw, 50px); }
+      .mode-title { display: block; }
+      .mode-title > .button { margin-top: 12px; }
+      .atom-picker { gap: 6px; }
+      .atom-picker { grid-template-columns: repeat(4, 1fr); max-height: 340px; }
+      .difficulty-panel { grid-template-columns: 1fr; }
+      .difficulty-options { grid-template-columns: repeat(2, 1fr); }
+      .atom-button { min-height: 78px; }
+      .hud { grid-template-columns: repeat(2,1fr); }
+      .complex-controls { grid-template-columns: repeat(2,1fr); }
+      .control-row { align-items: flex-start; }
+      .control-row label { max-width: 42%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">⌬</div>
+        <div>
+          <div class="brand-name">BIOQUÂNTICA</div>
+          <div class="brand-sub">laboratório de sistemas vivos</div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <div class="status"><span class="status-dot"></span> Simulação local ativa</div>
+        <a class="button small" href="jogos.html">← Mini games</a>
+        <button class="button small" id="homeButton" type="button" hidden>⌂ <span>Hub</span></button>
+      </div>
+    </header>
+
+    <main>
+      <section id="hubView" class="mode-view active" aria-labelledby="mainTitle">
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow">Uma jornada em escala molecular</div>
+            <h1 id="mainTitle">Do átomo <span>à vida.</span></h1>
+            <p class="lede">Montagem molecular para memorizar fórmulas, identificar átomos e testar ligações químicas em diferentes níveis de dificuldade.</p>
+            <button class="button primary" type="button" data-open-mode="molecule">Iniciar exploração <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="atom-art"><div class="orbit"></div><div class="orbit two"></div><div class="nucleus"></div><div class="electron one"></div><div class="electron two"></div></div>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div><h2>Experiência disponível</h2><p>Observe a fórmula, memorize-a e monte a molécula.</p></div>
+          <span class="tag">1 experiência</span>
+        </div>
+        <div class="mode-grid">
+          <button class="mode-card" type="button" data-open-mode="molecule">
+            <span class="mode-number">EXPERIÊNCIA 01</span><span class="mode-icon" aria-hidden="true">⚛</span>
+            <h3>A Alquimia da Vida</h3><p>Combine átomos e descubra como ligações químicas formam moléculas biológicas.</p><span class="mode-arrow" aria-hidden="true">↗</span>
+          </button>
+        </div>
+
+        <section class="particle-panel" aria-labelledby="particleTitle">
+          <div><h2 id="particleTitle">Painel de partículas subatômicas</h2><p id="particleDescription" aria-live="polite">Prótons têm carga positiva e determinam o número atômico, identificando cada elemento.</p></div>
+          <div class="particle-tabs" role="group" aria-label="Selecionar partícula">
+            <button class="particle-tab" type="button" data-particle="proton" aria-pressed="true">Prótons</button>
+            <button class="particle-tab" type="button" data-particle="neutron" aria-pressed="false">Nêutrons</button>
+            <button class="particle-tab" type="button" data-particle="electron" aria-pressed="false">Elétrons</button>
+          </div>
+        </section>
+      </section>
+
+      <section id="moleculeView" class="mode-view" aria-labelledby="moleculeTitle">
+        <div class="mode-title">
+          <div><div class="eyebrow">Experiência 01 · Química molecular</div><h1 id="moleculeTitle">A Alquimia da Vida</h1><p>Escolha átomos para montar a fórmula do desafio. Depois confira a composição e a compatibilidade das valências.</p></div>
+          <button class="button" type="button" data-go-home>← Voltar ao hub</button>
+        </div>
+        <div class="workspace">
+          <section class="panel panel-pad">
+            <div class="panel-heading"><h2>Bancada de montagem</h2><span class="step-tag" id="moleculeStep">Desafio 1 de 8</span></div>
+            <div class="challenge-banner"><div class="label">Molécula-alvo</div><h3 id="targetName">Água</h3><p id="targetFormula">Fórmula esperada: H₂O</p></div>
+            <p class="game-note"><strong>Como jogar:</strong> clique nos elementos para adicionar átomos até reproduzir a fórmula do desafio. Use × em cada átomo para removê-lo e clique em <b>Validar molécula</b> quando estiver pronto.</p>
+            <div class="difficulty-panel">
+              <strong>Dificuldade</strong>
+              <div class="difficulty-options" role="group" aria-label="Tempo para visualizar a fórmula">
+                <button class="difficulty-button active" type="button" data-preview-seconds="10">Fácil · 10s</button>
+                <button class="difficulty-button" type="button" data-preview-seconds="5">Normal · 5s</button>
+                <button class="difficulty-button" type="button" data-preview-seconds="3">Difícil · 3s</button>
+                <button class="difficulty-button" type="button" data-preview-seconds="1">Extremo · 1s</button>
+              </div>
+            </div>
+            <div class="formula-preview">
+              <span class="muted-copy" id="formulaStatus" aria-live="polite">A fórmula será exibida ao iniciar.</span>
+              <button class="button small" id="showFormula" type="button">Mostrar fórmula</button>
+            </div>
+            <div class="atom-picker" id="atomPicker" aria-label="Adicionar um elemento da tabela periódica"></div>
+            <div class="bench">
+              <div class="bench-top"><strong>Átomos na bancada</strong><span id="atomTotal">0 átomos</span></div>
+              <div class="atom-chips" id="atomChips" aria-live="polite"><span class="empty-note">Clique nos elementos acima para começar a montagem.</span></div>
+            </div>
+            <div class="bench-actions">
+              <button class="button primary" id="validateMolecule" type="button">Validar molécula</button>
+              <button class="button" id="clearAtoms" type="button">Limpar bancada</button>
+              <button class="button" id="skipChallenge" type="button">Pular desafio</button>
+            </div>
+            <div class="result-box" id="moleculeResult" role="status" aria-live="polite"></div>
+          </section>
+          <aside class="panel panel-pad">
+            <div class="panel-heading"><h2>Átomo selecionado</h2><span class="tag" id="selectedAtomSymbol">—</span></div>
+            <p class="muted-copy" id="atomDetailIntro">Selecione um elemento na bancada para consultar seus dados subatômicos.</p>
+            <div class="fact-list" id="atomFacts">
+              <div class="fact-row"><span>Número atômico</span><strong>—</strong></div>
+              <div class="fact-row"><span>Nêutrons (isótopo comum)</span><strong>—</strong></div>
+              <div class="fact-row"><span>Elétrons de valência</span><strong>—</strong></div>
+            </div>
+            <div class="molecule-progress" id="moleculeProgress" aria-label="Progresso dos desafios"></div>
+            <p class="muted-copy" style="margin:18px 0 0">Na natureza, a geometria tridimensional e o ambiente químico também influenciam as ligações. Este desafio verifica a fórmula e o balanço didático de valências.</p>
+          </aside>
+        </div>
+      </section>
+
+    </main>
+    <footer>BioQuântica · Experiências interativas de física, química e biologia · Funciona localmente, sem dependências externas.</footer>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const $ = (selector, root = document) => root.querySelector(selector);
+      const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+      const views = {
+        hub: $("#hubView"),
+        molecule: $("#moleculeView")
+      };
+
+      function showView(name) {
+        Object.entries(views).forEach(([key, view]) => view.classList.toggle("active", key === name));
+        $("#homeButton").hidden = name === "hub";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      $$("[data-open-mode]").forEach(button => button.addEventListener("click", () => showView(button.dataset.openMode)));
+      $$("[data-go-home]").forEach(button => button.addEventListener("click", () => showView("hub")));
+      $("#homeButton").addEventListener("click", () => showView("hub"));
+
+      const particleDescriptions = {
+        proton: "Prótons têm carga positiva e determinam o número atômico, identificando cada elemento.",
+        neutron: "Nêutrons não têm carga elétrica. Isótopos do mesmo elemento diferem no número de nêutrons.",
+        electron: "Elétrons têm carga negativa; os elétrons de valência participam das ligações químicas."
+      };
+      $$(".particle-tab").forEach(button => button.addEventListener("click", () => {
+        $$(".particle-tab").forEach(tab => tab.setAttribute("aria-pressed", String(tab === button)));
+        $("#particleDescription").textContent = particleDescriptions[button.dataset.particle];
+      }));
+
+      const periodicTable = [
+        [1,"H","Hidrogênio"],[2,"He","Hélio"],[3,"Li","Lítio"],[4,"Be","Berílio"],[5,"B","Boro"],[6,"C","Carbono"],[7,"N","Nitrogênio"],[8,"O","Oxigênio"],[9,"F","Flúor"],[10,"Ne","Neônio"],
+        [11,"Na","Sódio"],[12,"Mg","Magnésio"],[13,"Al","Alumínio"],[14,"Si","Silício"],[15,"P","Fósforo"],[16,"S","Enxofre"],[17,"Cl","Cloro"],[18,"Ar","Argônio"],[19,"K","Potássio"],[20,"Ca","Cálcio"],
+        [21,"Sc","Escândio"],[22,"Ti","Titânio"],[23,"V","Vanádio"],[24,"Cr","Cromo"],[25,"Mn","Manganês"],[26,"Fe","Ferro"],[27,"Co","Cobalto"],[28,"Ni","Níquel"],[29,"Cu","Cobre"],[30,"Zn","Zinco"],
+        [31,"Ga","Gálio"],[32,"Ge","Germânio"],[33,"As","Arsênio"],[34,"Se","Selênio"],[35,"Br","Bromo"],[36,"Kr","Criptônio"],[37,"Rb","Rubídio"],[38,"Sr","Estrôncio"],[39,"Y","Ítrio"],[40,"Zr","Zircônio"],
+        [41,"Nb","Nióbio"],[42,"Mo","Molibdênio"],[43,"Tc","Tecnécio"],[44,"Ru","Rutênio"],[45,"Rh","Ródio"],[46,"Pd","Paládio"],[47,"Ag","Prata"],[48,"Cd","Cádmio"],[49,"In","Índio"],[50,"Sn","Estanho"],
+        [51,"Sb","Antimônio"],[52,"Te","Telúrio"],[53,"I","Iodo"],[54,"Xe","Xenônio"],[55,"Cs","Césio"],[56,"Ba","Bário"],[57,"La","Lantânio"],[58,"Ce","Cério"],[59,"Pr","Praseodímio"],[60,"Nd","Neodímio"],
+        [61,"Pm","Promécio"],[62,"Sm","Samário"],[63,"Eu","Európio"],[64,"Gd","Gadolínio"],[65,"Tb","Térbio"],[66,"Dy","Disprósio"],[67,"Ho","Hólmio"],[68,"Er","Érbio"],[69,"Tm","Túlio"],[70,"Yb","Itérbio"],
+        [71,"Lu","Lutécio"],[72,"Hf","Háfnio"],[73,"Ta","Tântalo"],[74,"W","Tungstênio"],[75,"Re","Rênio"],[76,"Os","Ósmio"],[77,"Ir","Irídio"],[78,"Pt","Platina"],[79,"Au","Ouro"],[80,"Hg","Mercúrio"],
+        [81,"Tl","Tálio"],[82,"Pb","Chumbo"],[83,"Bi","Bismuto"],[84,"Po","Polônio"],[85,"At","Astato"],[86,"Rn","Radônio"],[87,"Fr","Frâncio"],[88,"Ra","Rádio"],[89,"Ac","Actínio"],[90,"Th","Tório"],
+        [91,"Pa","Protactínio"],[92,"U","Urânio"],[93,"Np","Neptúnio"],[94,"Pu","Plutônio"],[95,"Am","Amerício"],[96,"Cm","Cúrio"],[97,"Bk","Berquélio"],[98,"Cf","Califórnio"],[99,"Es","Einstênio"],[100,"Fm","Férmio"],
+        [101,"Md","Mendelévio"],[102,"No","Nobélio"],[103,"Lr","Laurêncio"],[104,"Rf","Rutherfórdio"],[105,"Db","Dúbnio"],[106,"Sg","Seabórgio"],[107,"Bh","Bóhrio"],[108,"Hs","Hássio"],[109,"Mt","Meitnério"],[110,"Ds","Darmstácio"],
+        [111,"Rg","Roentgênio"],[112,"Cn","Copernício"],[113,"Nh","Nihônio"],[114,"Fl","Fleróvio"],[115,"Mc","Moscóvio"],[116,"Lv","Livermório"],[117,"Ts","Tenessino"],[118,"Og","Oganessônio"]
+      ];
+      const atoms = {};
+      periodicTable.forEach(([atomic, symbol, name]) => {
+        let valence = 1;
+        if ([2,10,18,36,54,86,118].includes(atomic)) valence = 0;
+        else if ([1,3,11,19,37,55,87].includes(atomic)) valence = 1;
+        else if ([4,12,20,38,56,88].includes(atomic)) valence = 2;
+        else if ([5,13,31,49,81,113].includes(atomic)) valence = 3;
+        else if ([6,14,32,50,82,114].includes(atomic)) valence = 4;
+        else if ([7,15,33,51,83,115].includes(atomic)) valence = 5;
+        else if ([8,16,34,52,84,116].includes(atomic)) valence = 6;
+        else if ([9,17,35,53,85,117].includes(atomic)) valence = 7;
+        atoms[symbol] = { name, atomic, neutrons: atomic > 1 ? atomic : 0, valence, isotope: `Isótopo comum de ${name}` };
+      });
+
+      const moleculeChallenges = [
+        { name: "Água", formula: "H₂O", counts: { H: 2, O: 1 }, bonds: 2, structure: "Duas ligações covalentes simples O–H formam uma molécula polar. A água é solvente e participa de inúmeras reações celulares." },
+        { name: "Dióxido de carbono", formula: "CO₂", counts: { C: 1, O: 2 }, bonds: 4, structure: "O carbono central forma duas ligações duplas O=C=O. O CO₂ é produto da respiração celular e substrato da fotossíntese." },
+        { name: "Glicina", formula: "C₂H₅NO₂", counts: { C: 2, H: 5, N: 1, O: 2 }, bonds: 10, structure: "A glicina (NH₂–CH₂–COOH) é o aminoácido mais simples; participa da síntese de proteínas e de outras moléculas." },
+        { name: "Amônia", formula: "NH₃", counts: { N: 1, H: 3 }, bonds: 3, structure: "A amônia possui três ligações N–H. Ela participa do ciclo do nitrogênio e pode ser formada ou eliminada em processos metabólicos." },
+        { name: "Nitrogênio molecular", formula: "N₂", counts: { N: 2 }, bonds: 3, structure: "Os dois átomos de nitrogênio formam uma ligação tripla muito estável. O N₂ compõe cerca de 78% da atmosfera terrestre." },
+        { name: "Ácido clorídrico", formula: "HCl", counts: { H: 1, Cl: 1 }, bonds: 1, structure: "O cloro e o hidrogênio formam uma ligação polar simples. Em solução aquosa, o HCl se dissocia em íons." },
+        { name: "Sulfeto de hidrogênio", formula: "H₂S", counts: { H: 2, S: 1 }, bonds: 2, structure: "O enxofre central forma duas ligações simples com hidrogênio. O H₂S é tóxico em altas concentrações." },
+        { name: "Ácido fosfórico", formula: "H₃PO₄", counts: { H: 3, P: 1, O: 4 }, bonds: 8, structure: "O ácido fosfórico contém fósforo ligado a oxigênio e grupos hidroxila. Fosfatos participam do ATP e do DNA." }
+      ];
+      periodicTable.forEach(([atomic, symbol, name]) => {
+        moleculeChallenges.push({
+          name,
+          formula: symbol,
+          counts: { [symbol]: 1 },
+          bonds: 0,
+          elementOnly: true,
+          structure: `${name} é o elemento de número atômico ${atomic}, representado pelo símbolo ${symbol}.`
+        });
+      });
+      for (let i = moleculeChallenges.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [moleculeChallenges[i], moleculeChallenges[j]] = [moleculeChallenges[j], moleculeChallenges[i]];
+      }
+      let moleculeIndex = 0;
+      let selectedAtoms = [];
+      let previewSeconds = 10;
+      let previewTimer = 0;
+      const completedChallenges = new Set();
+      const atomLabels = { H: "Hidrogênio", C: "Carbono", O: "Oxigênio", N: "Nitrogênio" };
+
+      function showAtomDetails(symbol) {
+        const atom = atoms[symbol];
+        $("#selectedAtomSymbol").textContent = symbol;
+        $("#atomDetailIntro").textContent = `${atom.name} · isótopo comum ${atom.isotope}.`;
+        $("#atomFacts").innerHTML = `
+          <div class="fact-row"><span>Número atômico</span><strong>${atom.atomic} próton${atom.atomic > 1 ? "s" : ""}</strong></div>
+          <div class="fact-row"><span>Nêutrons (isótopo comum)</span><strong>${atom.neutrons} · ${atom.isotope}</strong></div>
+          <div class="fact-row"><span>Elétrons de valência</span><strong>${atom.valence}</strong></div>`;
+      }
+
+      function renderAtomPicker() {
+        const symbols = periodicTable.map(([, symbol]) => symbol);
+        for (let i = symbols.length - 1; i > 0; i -= 1) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [symbols[i], symbols[j]] = [symbols[j], symbols[i]];
+        }
+        const picker = $("#atomPicker");
+        picker.replaceChildren();
+        symbols.forEach(symbol => {
+          const atom = atoms[symbol];
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "atom-button";
+          button.dataset.addAtom = symbol;
+          button.setAttribute("aria-label", `Adicionar ${atom.name}`);
+          button.innerHTML = `<span class="atom-count" data-count="${symbol}">0</span><span class="atom-symbol">${symbol}</span><span class="atom-name">${atom.name}</span>`;
+          picker.append(button);
+        });
+      }
+
+      function renderMolecule() {
+        const challenge = moleculeChallenges[moleculeIndex];
+        const isCompleted = completedChallenges.has(moleculeIndex);
+        $("#moleculeStep").textContent = `Desafio ${moleculeIndex + 1} de ${moleculeChallenges.length}`;
+        $("#targetName").textContent = challenge.name;
+        $("#targetFormula").textContent = "Fórmula oculta";
+        $("#formulaStatus").textContent = "Memorize a fórmula quando ela aparecer.";
+        clearInterval(previewTimer);
+        Object.keys(atoms).forEach(symbol => {
+          const count = document.querySelector(`[data-count="${symbol}"]`);
+          if (count) count.textContent = selectedAtoms.filter(atom => atom === symbol).length;
+        });
+        $$(".atom-button").forEach(button => { button.disabled = isCompleted; });
+        $("#clearAtoms").disabled = isCompleted;
+        $("#validateMolecule").disabled = isCompleted;
+        $("#atomTotal").textContent = `${selectedAtoms.length} átomo${selectedAtoms.length === 1 ? "" : "s"}`;
+        const chips = $("#atomChips");
+        chips.replaceChildren();
+        if (!selectedAtoms.length) {
+          const note = document.createElement("span");
+          note.className = "empty-note";
+          note.textContent = "Clique nos elementos acima para começar a montagem.";
+          chips.append(note);
+        } else {
+          selectedAtoms.forEach((symbol, index) => {
+            const chip = document.createElement("span");
+            chip.className = "atom-chip";
+            chip.append(document.createTextNode(symbol));
+            const remove = document.createElement("button");
+            remove.type = "button";
+            remove.setAttribute("aria-label", `Remover átomo ${symbol}`);
+            remove.textContent = "×";
+            remove.addEventListener("click", () => {
+              selectedAtoms.splice(index, 1);
+              renderMolecule();
+            });
+            chip.append(remove);
+            chips.append(chip);
+          });
+        }
+        const progress = $("#moleculeProgress");
+        progress.replaceChildren();
+        moleculeChallenges.forEach((item, index) => {
+          const row = document.createElement("div");
+          row.className = `progress-item${completedChallenges.has(index) ? " done" : ""}`;
+          row.innerHTML = `<span class="progress-mark">${completedChallenges.has(index) ? "✓" : index + 1}</span><span>${item.name}</span>`;
+          progress.append(row);
+        });
+      }
+
+      function hideFormula() {
+        $("#targetFormula").textContent = "Fórmula oculta";
+        $("#formulaStatus").textContent = "Fórmula escondida. Monte a molécula.";
+      }
+
+      function showFormula() {
+        clearInterval(previewTimer);
+        const challenge = moleculeChallenges[moleculeIndex];
+        let remaining = previewSeconds;
+        $("#targetFormula").textContent = `Fórmula: ${challenge.formula}`;
+        $("#formulaStatus").textContent = `Memorize: ${remaining}s restante${remaining === 1 ? "" : "s"}`;
+        previewTimer = window.setInterval(() => {
+          remaining -= 1;
+          if (remaining <= 0) {
+            clearInterval(previewTimer);
+            hideFormula();
+            return;
+          }
+          $("#formulaStatus").textContent = `Memorize: ${remaining}s restante${remaining === 1 ? "" : "s"}`;
+        }, 1000);
+      }
+
+      $$(".difficulty-button").forEach(button => button.addEventListener("click", () => {
+        $$(".difficulty-button").forEach(option => option.classList.toggle("active", option === button));
+        previewSeconds = Number(button.dataset.previewSeconds);
+        showFormula();
+      }));
+      $("#showFormula").addEventListener("click", showFormula);
+
+      $("#atomPicker").addEventListener("click", event => {
+        const button = event.target.closest("[data-add-atom]");
+        if (!button || button.disabled) return;
+        const symbol = button.dataset.addAtom;
+        selectedAtoms.push(symbol);
+        showAtomDetails(symbol);
+        $("#moleculeResult").className = "result-box";
+        renderMolecule();
+      });
+      $("#clearAtoms").addEventListener("click", () => {
+        selectedAtoms = [];
+        $("#moleculeResult").className = "result-box";
+        renderMolecule();
+      });
+      $("#skipChallenge").addEventListener("click", () => {
+        selectedAtoms = [];
+        if (moleculeIndex < moleculeChallenges.length - 1) {
+          moleculeIndex += 1;
+        } else {
+          moleculeIndex = 0;
+        }
+        const result = $("#moleculeResult");
+        result.className = "result-box show";
+        result.innerHTML = `<strong>Desafio pulado</strong>${moleculeChallenges[moleculeIndex].name}: resposta embaixo da fórmula ao ativar a visualização.`;
+        window.setTimeout(() => { result.className = "result-box"; }, 1800);
+        renderMolecule();
+      });
+      $("#validateMolecule").addEventListener("click", () => {
+        const challenge = moleculeChallenges[moleculeIndex];
+        const actual = Object.fromEntries(Object.keys(atoms).map(symbol => [symbol, selectedAtoms.filter(atom => atom === symbol).length]));
+        const formulaMatches = Object.keys(atoms).every(symbol => actual[symbol] === (challenge.counts[symbol] || 0));
+        const result = $("#moleculeResult");
+        result.className = "result-box show";
+        if (!formulaMatches) {
+          result.classList.add("error");
+          result.innerHTML = `<strong>A composição ainda não corresponde.</strong>Confira o símbolo e a quantidade. Dica: ${challenge.formula}.`;
+          return;
+        }
+        const bondOrderSum = selectedAtoms.reduce((sum, symbol) => {
+          const valence = atoms[symbol].valence;
+          const bondCapacity = { H: 1, C: 4, N: 3, O: 2, P: 5, S: 2, Cl: 1 };
+          return sum + (bondCapacity[symbol] || valence);
+        }, 0) / 2;
+        if (!challenge.elementOnly && (!Number.isInteger(bondOrderSum) || bondOrderSum !== challenge.bonds)) {
+          result.classList.add("error");
+          result.innerHTML = `<strong>Fórmula correta, mas balanço de ligações inválido.</strong>As valências disponíveis não fecham a estrutura neutra esperada.`;
+          return;
+        }
+        result.classList.add("success");
+        result.innerHTML = challenge.elementOnly
+          ? `<strong>Elemento identificado · ${challenge.formula}</strong>${challenge.structure}`
+          : `<strong>Molécula validada · ${challenge.formula}</strong>${challenge.bonds} ligações covalentes em ordem total compatível com as valências. ${challenge.structure}`;
+        completedChallenges.add(moleculeIndex);
+        if (moleculeIndex < moleculeChallenges.length - 1) {
+          const next = document.createElement("button");
+          next.type = "button";
+          next.className = "button small";
+          next.style.marginTop = "10px";
+          next.textContent = "Próximo desafio →";
+          next.addEventListener("click", () => {
+            moleculeIndex += 1;
+            selectedAtoms = [];
+            result.className = "result-box";
+            renderMolecule();
+          });
+          result.append(next);
+        } else {
+          const finish = document.createElement("strong");
+          finish.style.marginTop = "8px";
+          finish.textContent = "Trilha concluída — você conectou átomos a funções biológicas.";
+          result.append(finish);
+        }
+        renderMolecule();
+      });
+      renderAtomPicker();
+      renderMolecule();
+
+    })();
+  </script>
+</body>
+</html>
